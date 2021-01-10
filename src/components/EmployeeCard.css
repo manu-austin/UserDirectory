@@ -1,0 +1,9 @@
+.User {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    border: 5px solid #eee;
+    margin: 0px auto 15px;
+    text-align: center;
+  }
+
