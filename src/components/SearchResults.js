@@ -86,7 +86,7 @@ state = {
             {/* The line with the form */}
             <div className="row">    
                 <SearchForm
-                value={this.state.getRandomUser}
+                value={this.state.search}
                 handleInputChange={this.handleInputChange}
                 handleFormSubmit={this.handleFormSubmit}
                 />
