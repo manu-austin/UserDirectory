@@ -36,39 +36,39 @@ state = {
       .catch(err => console.log(err));
   }
 
-  filterEmployees = (searchkey) => {
-    var filterResult = this.state.result.filter(person => person.firstName === searchkey)
-    this.setState({
-      result:filterResult
-    })
-  }
+  filterEmployees = () => {
+    if (this.state.result.length === 0) return;
+    const filterResult = this.state.result.filter(el => {
+        if (el.firstName === this.state.search) return true;
+        return false;
 
+    })
+    this.setState({
+        searchResults: filterResult
+    })
+}
 
 
   handleFormSubmit = event => {
     event.preventDefault();
-    const value = event.target.value;
-    const name = event.target.name;
-
-    this.filterEmployees(value);
-    this.setState({
-      [name]: value
-    });
-    this.filterEmployees(value);
-    this.filterEmployees(this.state.getRandomUser);
+    this.filterEmployees(this.state.search);
   };
 
 
 
   handleInputChange = event => {
-    event.preventDefault();
     const value = event.target.value;
     const name = event.target.name;
     this.setState({
-      [name]: value
-    });    
-    this.setState({ search: value });
-  };
+        [name]: value
+    }, ()=> {
+        if (!this.state.search) {
+            this.setState({
+                searchResults: this.state.result
+            })
+        }
+    });
+};
 
 
   render() {
